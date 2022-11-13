@@ -14,6 +14,13 @@ code {
 
 .point {
   cursor: pointer;
+  /* fill: red; */
+}
+.del:hover {
+  fill: red;
+}
+.edt:hover {
+  fill: rgb(0, 106, 255);
 }
 
 ::-webkit-scrollbar-track {
@@ -30,3 +37,22 @@ code {
   background-color: #287dfc;
   /* border-radius: 2px; */
 }
+
+/* .card_hover_white {
+  transition: 0.2s;
+  border: 2px solid #0dcaf0 !important;
+} */
+.card_hover_white:hover {
+  /* transform: scale(1, 1); */
+  box-shadow: 0 2px 20px rgb(0 0 0 / 70%);
+}
+
+/* .card:hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
+    0 24px 46px var(--box-shadow-color);
+}
+
+.card:hover .overlayb {
+  transform: scale(9) translateZ(0);
+} */

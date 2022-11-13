@@ -6,6 +6,8 @@ const Home = (props) => {
         <div>
             <Notes showAlert={showAlert} />
 
+
+
         </div>
     )
 }

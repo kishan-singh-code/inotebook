@@ -5,6 +5,8 @@ import logo from "./img/signin-image.jpg";
 import "./css/style.css";
 import { ReactComponent as Eyeopen } from './icons/eye_open.svg';
 import { ReactComponent as Eyeclose } from './icons/eyeclose.svg';
+import ReactTooltip from 'react-tooltip';
+
 
 const Signup = (props) => {
 
@@ -110,8 +112,17 @@ const Signup = (props) => {
                                             <input type="password" className="form-control passcur" id="password" onChange={onChange} name="password" minLength={5} required />
                                             <div className="input-group-text eyecur" onClick={handlePass}>
 
-                                                {funeye && <Eyeopen className="point" />}
-                                                {!funeye && <Eyeclose className="point" />}
+
+                                                {funeye && <Eyeopen data-tip data-for='Show' className="point" />}
+                                                {!funeye && <Eyeclose data-tip data-for='Hide' className="point" />}
+
+                                                {funeye && <ReactTooltip id='Show' type='warning' textColor='#ffffff' backgroundColor='#287dfc' effect='solid' padding='7px'>
+                                                    <span>Show</span>
+                                                </ReactTooltip>}
+
+                                                {!funeye && <ReactTooltip id='Hide' type='warning' textColor='#ffffff' backgroundColor='#287dfc' effect='solid' padding='7px'>
+                                                    <span>Hide</span>
+                                                </ReactTooltip>}
 
                                             </div>
                                         </div>

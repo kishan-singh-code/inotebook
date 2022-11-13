@@ -5,6 +5,7 @@ const Home = (props) => {
     return (
         <div>
             <Notes showAlert={showAlert} />
+
         </div>
     )
 }

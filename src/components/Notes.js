@@ -3,11 +3,14 @@ import noteContext from "../context/notes/noteContext"
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
 import { useNavigate } from 'react-router-dom';
+// import Condel from './Condel';
 
 const Notes = (props) => {
     const context = useContext(noteContext);
+    // const { deleteNote } = context;
+
     let navigate = useNavigate();
-    const { notes, getNotes, editNote } = context;
+    const { notes, getNotes, editNote, deleteNote } = context;
     useEffect(() => {
         if (localStorage.getItem('token')) {
             getNotes()
@@ -17,9 +20,13 @@ const Notes = (props) => {
         }
         // eslint-disable-next-line
     }, [])
-    const ref = useRef(null)
-    const refClose = useRef(null)
-    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
+    const ref = useRef(null);
+    const refd = useRef(null);
+    const refClose = useRef(null);
+    const refClosedel = useRef(null);
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
+
+    const [note_id, setNote_id] = useState("");
 
     const updateNote = (currentNote) => {
         ref.current.click();
@@ -30,6 +37,18 @@ const Notes = (props) => {
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
         props.showAlert("Updated Successfully", "success");
+    }
+    const handleClickdel = (e) => {
+        // editNote(note.id, note.etitle, note.edescription, note.etag)
+        deleteNote(note_id);
+        refClosedel.current.click();
+        props.showAlert("Deleted Successfully", "success");
+    }
+
+    const popdel = (currentNote) => {
+        refd.current.click();
+        setNote_id(currentNote._id);
+        // setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     }
 
     const onChange = (e) => {
@@ -74,13 +93,68 @@ const Notes = (props) => {
                 </div>
             </div>
 
+
+
+
+            <button type="button" ref={refd} className="btn d-none btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                Launch demo modal
+            </button>
+
+            {/* <!-- Modal --> */}
+            <div className="modal fade" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered modal-fade-transform">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel1">Delete</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            Do you want to Delete
+                        </div>
+                        <div className="modal-footer">
+                            <button ref={refClosedel} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" className="btn btn-primary" onClick={handleClickdel} >Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div className="row my-3">
                 <h2>You Notes</h2>
                 <div className="container mx-2">
                     {notes.length === 0 && 'No notes to display'}
                 </div>
                 {notes.map((note) => {
-                    return <Noteitem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />
+                    return <Noteitem key={note._id} updateNote={updateNote} popdel={popdel} showAlert={props.showAlert} note={note} />
                 })}
             </div>
         </>

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import noteContext from "../context/notes/noteContext"
+import React from 'react'
+// import noteContext from "../context/notes/noteContext"
 import { ReactComponent as Deletelogo } from './icons/delete.svg';
 import { ReactComponent as Editlogo } from './icons/edit.svg';
 import ReactTooltip from 'react-tooltip';
@@ -7,9 +7,9 @@ import ReactTooltip from 'react-tooltip';
 
 
 const Noteitem = (props) => {
-    const context = useContext(noteContext);
-    const { deleteNote } = context;
-    const { note, updateNote } = props;
+    // const context = useContext(noteContext);
+    // const { deleteNote } = context;
+    const { note, updateNote, popdel } = props;
     return (
         <div className="col-md-3 ">
             <div className="card my-3 card_hover_white">
@@ -22,8 +22,11 @@ const Noteitem = (props) => {
                         }}></i> */}
 
                         <Deletelogo data-tip data-for='Delete' className="point del mx-2" onClick={() => {
-                            deleteNote(note._id);
-                            props.showAlert("Deleted Successfully", "success");
+                            // deleteNote(note._id);
+                            popdel(note);
+
+
+                            // props.showAlert("Deleted Successfully", "success");
                         }} />
 
                         <ReactTooltip id='Delete' type='warning' textColor='#ffffff' backgroundColor='red' effect='solid' padding='5px'>

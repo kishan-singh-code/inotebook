@@ -108,7 +108,7 @@ const Login = (props) => {
                                         </div>
                                     </div>
                                     <div className="text-center text-md-start">
-                                        <button type="submit" className="btn mt-2 mt-md-3 btn-primary">Submit</button>
+                                        <button type="submit" className="btn mt-2  mt-md-3 btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
